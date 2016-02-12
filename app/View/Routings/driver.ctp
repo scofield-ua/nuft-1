@@ -28,10 +28,12 @@
     <div class='col-md-12'>
         <div class="card">
             <div class="card-header">
-                <strong>Водій:</strong> <?= $driver['Driver']['name']; ?>
+                <strong>Водій:</strong> <?= $driver['Driver']['name']; ?>				
             </div>
             
             <div class="card-block">
+				<?= $this->element('parts/print-button'); ?>
+				
                 <?php
 					if(empty($paths)) {
 						echo "<p class='text-muted'>Маршрутів немає ця цього водія</p>";

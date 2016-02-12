@@ -18,6 +18,12 @@ class InvoicesController extends AppController {
                 $conds['Invoice.date LIKE'] = '%'.date('Y-m-d', strtotime($d)).'%';
             }
         }
+		
+		$get_fields = ['customer_id', 'product_id'];
+		foreach($get_fields as $field) {
+			$val = $this->request->query($field);
+			if(!empty($val) && $val == true) $conds['Invoice.'.$field] = $val;
+		}
         
         $this->paginate = [
             'conditions' => $conds,
@@ -27,7 +33,9 @@ class InvoicesController extends AppController {
         ];        
         
         $this->set([
-            'invoices' => $this->paginate($this->Invoice)
+            'invoices' => $this->paginate($this->Invoice),
+			'products' => [null => 'Будь-який'] + $this->Invoice->Product->getList(),
+			'customers' => [null => 'Будь-який'] + $this->Invoice->Customer->getList(),
         ]);
     }
     
@@ -78,6 +86,18 @@ class InvoicesController extends AppController {
 			'customers' => $this->Invoice->Customer->getList(),
         ]);
     }
+	
+	function view($id = null) {
+		if($id === null) throw new NotFoundException();
+        
+		$this->Invoice->recursive = 1;
+        $invoice = $this->Invoice->findById($id);
+        if(empty($invoice)) throw new NotFoundException();
+		
+		$this->set([
+            'invoice' => $invoice,
+        ]);
+	}
     
     function delete($id = null) {
         

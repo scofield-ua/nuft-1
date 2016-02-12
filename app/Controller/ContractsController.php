@@ -18,6 +18,12 @@ class ContractsController extends AppController {
                 $conds['Customer.title LIKE'] = "%{$n}%";
             }
         }
+		
+		$get_fields = ['customer_id', 'sum'];
+		foreach($get_fields as $field) {
+			$val = $this->request->query($field);
+			if(!empty($val) && $val == true) $conds['Contract.'.$field] = $val;
+		}
         
         $this->paginate = [
             'contain' => ['Customer'],
@@ -27,7 +33,8 @@ class ContractsController extends AppController {
         ];        
         
         $this->set([
-            'contracts' => $this->paginate($this->Contract)
+            'contracts' => $this->paginate($this->Contract),
+			'customers' => [null => 'Будь-який'] + $this->Contract->Customer->getList()
         ]);
     }
     
@@ -76,6 +83,18 @@ class ContractsController extends AppController {
             'customers' => $this->Contract->Customer->getList()
         ]);
     }
+	
+	function view($id = null) {
+		if($id === null) throw new NotFoundException();
+        
+		$this->Contract->recursive = 1;
+        $contract = $this->Contract->findById($id);
+        if(empty($contract)) throw new NotFoundException();
+		
+		$this->set([
+            'contract' => $contract,
+        ]);
+	}
     
     function delete($id = null) {
         

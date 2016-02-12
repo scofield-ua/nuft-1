@@ -17,7 +17,7 @@
             <?= $this->fetch('breadcrumb'); ?>
         
             <div class='row'>
-                <div class='col-md-3'>
+                <div class='col-md-3 no-print'>
                     <?= $this->element('parts/nav'); ?>
                 </div>
                 

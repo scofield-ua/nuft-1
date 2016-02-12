@@ -1,0 +1,1 @@
+<button onclick="window.print();" class="btn btn-secondary pull-right">Друк</button>
