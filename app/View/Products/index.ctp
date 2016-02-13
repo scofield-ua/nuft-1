@@ -33,7 +33,7 @@
                     </div>
                     <div class='col-md-5'>
                         <form class="form-inline">
-                            <input type="text" class="form-control form-control-sm" name="name" placeholder="Пошук за назвою" />
+                            <input type="text" class="form-control form-control-sm" name="name" placeholder="Пошук за назвою" value="<?= $this->request->query('name'); ?>" />
                             <a href="/products" class="btn btn-secondary btn-sm">Відмінити</a>
                         </form>
                     </div>

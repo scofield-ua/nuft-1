@@ -43,7 +43,7 @@
 						]
 					]);
 					echo $this->Form->input('customer_id', ['options' => $customers, 'label' => 'Замовник', 'value' => $this->request->query('customer_id')]);
-					echo $this->Form->input('sum', ['label' => 'Сумма', 'value' => $this->request->query('sum'), 'required' => false]);
+					echo $this->Form->input('sum', ['label' => 'Сума', 'value' => $this->request->query('sum'), 'required' => false]);
 					echo $this->Form->submit('Пошук', ['class' => 'btn btn-secondary']);						
 					echo $this->Form->end();
 				?>
@@ -83,11 +83,19 @@
                         
                         <tbody>
                         <?php
-                            if(!empty($contracts)) {
+                            if(!empty($contracts)) {								
+								
                                 foreach($contracts as $item) {
+									$btns = "
+										<div class='btn-group' role='group'>
+											".$this->Html->link('Переглянути', '/contracts/view/'.$item['Contract']['id'], ['class' => 'btn btn-primary-outline btn-sm'])."
+											".$this->Html->link('Редагувати', '/contracts/edit/'.$item['Contract']['id'], ['class' => 'btn btn-primary-outline btn-sm'])."
+										</div>
+									";
+									
                                     echo "
                                         <tr>
-											<td class='no-print'>".$this->Html->link('Переглянути', '/contracts/view/'.$item['Contract']['id'], ['class' => 'btn btn-primary btn-sm'])."</td>
+											<td class='no-print'>{$btns}</td>
                                             <td>".$item['Customer']['title']."</td>
                                             <td>".$item['Contract']['sum']."</td>
                                             <td data-format='DD MMMM YYYY'>".$item['Contract']['date']."</td>

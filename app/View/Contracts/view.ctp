@@ -18,6 +18,14 @@
 </p>
 <hr class='no-print'>
 
-<p><strong>Замовник:</strong> <?= $contract['Customer']['title'] ?> <small>(<?= $contract['Customer']['address'] ?>, <?= $contract['Customer']['tel'] ?>)</small></p>
-<p><strong>Сумма:</strong> <?= $contract['Contract']['sum'] ?> грн.</p>
+<p class='lead text-muted'>Дані контракту</p>
+<hr>
+<p><strong>Сума:</strong> <?= $contract['Contract']['sum'] ?> грн.</p>
 <p><strong>Дата:</strong> <span data-format='DD MMMM YYYY'><?= $contract['Contract']['date'] ?></span></p>
+<hr>
+
+<p class='lead text-muted'>Дані замовника</p>
+<p><strong>Замовник:</strong> <?= $contract['Customer']['title'] ?></p>
+<p><strong>Адреса:</strong> <?= $contract['Customer']['address'] ?></p>
+<p><strong>Телефон:</strong> <?= $contract['Customer']['tel'] ?></p>
+

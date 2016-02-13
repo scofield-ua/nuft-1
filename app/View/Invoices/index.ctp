@@ -86,13 +86,20 @@
                         <?php
                             if(!empty($invoices)) {
                                 foreach($invoices as $item) {
+									$btns = "
+										<div class='btn-group' role='group'>
+											".$this->Html->link('Переглянути', '/invoices/view/'.$item['Invoice']['id'], ['class' => 'btn btn-primary-outline btn-sm'])."
+											".$this->Html->link('Редагувати', '/invoices/edit/'.$item['Invoice']['id'], ['class' => 'btn btn-primary-outline btn-sm'])."
+										</div>
+									";
+									
                                     echo "
                                         <tr>
-											<td class='no-print'>".$this->Html->link('Переглянути', '/invoices/view/'.$item['Invoice']['id'], ['class' => 'btn btn-primary btn-sm'])."</td>
+											<td class='no-print'>{$btns}</td>
 											<td>".$item['Customer']['title']."</td>
 											<td>".$item['Product']['title']."</td>
                                             <td>".$item['Invoice']['amount']."</td>
-											<td>".$this->Html->link('<span data-format="DD MMMM YYYY HH:mm">'.$item['Invoice']['date'].'</span>', '/invoices/edit/'.$item['Invoice']['id'], ['escape' => false])."</td>
+											<td data-format='DD MMMM YYYY HH:mm'>".$item['Invoice']['date']."</td>
                                         </tr>
                                     ";
                                 }
