@@ -6,7 +6,7 @@
     $this->start('breadcrumb');
     echo $this->element('parts/breadcrumb', [
         'items' => [
-            '/cars' => 'Водії',
+            '/cars' => 'Автомобілі',
             '/cars/edit/'.$car['Car']['id'] => $this->fetch('page_title'),
         ]
     ]);
