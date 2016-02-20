@@ -3,6 +3,7 @@
         $items = [
             '/products' => 'Продукти',
             '/customers' => 'Замовники',
+			'/customers_requests' => 'Заявки',
             '/contracts' => 'Контракти',
             '/drivers' => 'Водії',
             '/cars' => 'Автомобілі',
