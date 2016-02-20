@@ -67,7 +67,7 @@ class CustomersRequestsController extends AppController {
             if($this->CustomerRequest->save()) {
                 flash('Дані контракта оновлено', 'success');
                 
-                $this->redirect('/contracts/edit/'.$this->CustomerRequest->id);
+                $this->redirect('/customers_requests/edit/'.$this->CustomerRequest->id);
             } else {
                 flash('Помилка', 'error');
             }
