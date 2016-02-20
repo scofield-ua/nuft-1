@@ -16,6 +16,14 @@ class UsersController extends AppController {
             }
         }
     }
+	
+	function logout() {
+        $this->autoRender = false;
+            
+        $this->Auth->logout();
+		
+		return $this->redirect('/');
+    }
     
     /**
     *   Create first user (admin)
